@@ -14,6 +14,7 @@ class SubjectsController < ApplicationController
   def create
     @subject = Subject.new(subject_params)
     if @subject.save
+      flash[:notice] ="Subject Saved Succesfully"
       redirect_to(subjects_path)
     else
       render('new')
@@ -27,17 +28,22 @@ class SubjectsController < ApplicationController
   def update
     @subject = Subject.find(params[:id])
       if @subject.update(subject_params)
+        flash[:notice] ="Subject updated Succesfully"
         redirect_to(subject_path(@subject))
       else
         render('edit') 
       end
   end
- # update_attribute
+
   def delete
-  end
+    @subject = Subject.find(params[:id])
+  end 
 
   def destroy
-    
+    @subject = Subject.find(params[:id])
+    @subject.destroy
+      flash[:notice] ="Subject Deleted Succesfully"
+      redirect_to(subjects_path)
   end
 
 

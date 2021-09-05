@@ -1,3 +1,10 @@
+<% if !flash[:notice].blank?%>
+    <div class="notice">
+    <%# <%=!flash[:notice].blank?%>
+    <%# <%=flash[:notice].blank?%> 
+    <%=flash[:notice]%>
+    </div>
+<%end%>
 <div class="Subjects index">
     <h2>Subject Index</h2>
     <%= link_to 'Add new Subject' , new_subject_path , :class => 'action new'%>
@@ -19,7 +26,7 @@
             <td>
                 <%= link_to("Show" , subject_path(subject) ,:class=>'action show')%>
                 <%= link_to("Edit" , edit_subject_path(subject) , :class=>'action edit')%>
-                <%= link_to("Delete" , '#' , :class=>'action delete' )%>
+                <%= link_to("Delete" , delete_subject_path(subject) , :class=>'action delete' )%>
             </td>
         </tr>
         <%end%>
